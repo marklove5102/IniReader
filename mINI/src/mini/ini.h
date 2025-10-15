@@ -266,6 +266,21 @@ namespace mINI
                 set(key, obj, com);
             }
         }
+        void setAll(std::string key, T obj, std::string com = {})
+        {
+            INIStringUtil::trim(key);
+        #ifndef MINI_CASE_SENSITIVE
+            INIStringUtil::toLower(key);
+        #endif
+            for (auto& item : data)
+            {
+                if (std::get<0>(item) == key)
+                {
+                    std::get<1>(item) = obj;
+                    std::get<2>(item) = com;
+                }
+            }
+        }
         bool remove(std::string key)
         {
             INIStringUtil::trim(key);
