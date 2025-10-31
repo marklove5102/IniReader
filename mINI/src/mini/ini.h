@@ -398,7 +398,7 @@ namespace mINI
                     value = value.substr(equalsAt + 1);
                     comment = line.substr(commentAt);
                     auto ident = value;
-                    while (ident.back() == ' ')
+                    while (!ident.empty() && ident.back() == ' ')
                     {
                         ident.pop_back();
                         comment.insert(0, " ");
